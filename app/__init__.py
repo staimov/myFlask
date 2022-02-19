@@ -42,6 +42,11 @@ def create_app(config_class=Config):
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
 
+    if app.config['ELASTICSEARCH_URL']:
+        app.logger.info('ELASTICSEARCH_URL: ' + app.config['ELASTICSEARCH_URL'])
+    else:
+        app.logger.info('ELASTICSEARCH_URL: None')
+
     app.logger.info('ELASTICSEARCH_URL: ' + app.config['ELASTICSEARCH_URL'])
     app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
                                       basic_auth=(app.config['ELASTICSEARCH_USER'],

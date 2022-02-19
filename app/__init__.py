@@ -13,7 +13,6 @@ from flask_moment import Moment
 from config import Config
 from elasticsearch import Elasticsearch
 
-
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
@@ -45,10 +44,15 @@ def create_app(config_class=Config):
     app.register_blueprint(main_bp)
 
     app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
-                                      basic_auth=(app.config['ELASTICSEARCH_USER'],
-                                                  app.config['ELASTICSEARCH_PASSWORD']),
-                                      verify_certs=None) \
+                                      http_auth=(app.config['ELASTICSEARCH_USER'],
+                                                 app.config['ELASTICSEARCH_PASSWORD'])) \
         if app.config['ELASTICSEARCH_URL'] else None
+
+    # app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
+    #                                   basic_auth=(app.config['ELASTICSEARCH_USER'],
+    #                                               app.config['ELASTICSEARCH_PASSWORD']),
+    #                                   verify_certs=None) \
+    #     if app.config['ELASTICSEARCH_URL'] else None
 
     if not app.debug and not app.testing:
         if app.config['MAIL_SERVER']:
@@ -88,4 +92,3 @@ def create_app(config_class=Config):
 
 
 from app import models
-

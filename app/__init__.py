@@ -1,6 +1,8 @@
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
+from urllib.parse import urlparse
+
 from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -41,11 +43,6 @@ def create_app(config_class=Config):
 
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
-
-    if not app.config['ELASTICSEARCH_URL'] is None:
-        app.logger.info('ELASTICSEARCH_URL: ' + app.config['ELASTICSEARCH_URL'])
-    else:
-        app.logger.info('ELASTICSEARCH_URL: None')
 
     app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
                                       basic_auth=(app.config['ELASTICSEARCH_USER'],

@@ -1,4 +1,8 @@
-/droplet.txt
 /.env
 /elasticsearch.txt
 /logs/
+/deployment_on_linux/.env
+/app.db
+/deployment_on_linux/droplet.txt
+/app/logs/
+

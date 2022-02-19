@@ -47,7 +47,7 @@ def create_app(config_class=Config):
     app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
                                       basic_auth=(app.config['ELASTICSEARCH_USER'],
                                                   app.config['ELASTICSEARCH_PASSWORD']),
-                                      verify_certs=True) \
+                                      verify_certs=None) \
         if app.config['ELASTICSEARCH_URL'] else None
 
     if not app.debug and not app.testing:

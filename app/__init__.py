@@ -43,16 +43,15 @@ def create_app(config_class=Config):
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
 
-    app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
-                                      http_auth=(app.config['ELASTICSEARCH_USER'],
-                                                 app.config['ELASTICSEARCH_PASSWORD'])) \
-        if app.config['ELASTICSEARCH_URL'] else None
-
-    # app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
-    #                                   basic_auth=(app.config['ELASTICSEARCH_USER'],
-    #                                               app.config['ELASTICSEARCH_PASSWORD']),
-    #                                   verify_certs=None) \
-    #     if app.config['ELASTICSEARCH_URL'] else None
+    if app.config['ELASTICSEARCH_URL']:
+        if app.config['ELASTICSEARCH_USER']:
+            app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'],
+                                              http_auth=(app.config['ELASTICSEARCH_USER'],
+                                                         app.config['ELASTICSEARCH_PASSWORD']))
+        else:
+            app.elasticsearch = Elasticsearch(app.config['ELASTICSEARCH_URL'], verify_certs=None)
+    else:
+        app.elasticsearch = None
 
     if not app.debug and not app.testing:
         if app.config['MAIL_SERVER']:

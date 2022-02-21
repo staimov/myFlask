@@ -5,4 +5,4 @@
 /app.db
 /deployment_on_linux/droplet.txt
 /app/logs/
-
+/heroku_commands.txt

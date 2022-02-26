@@ -60,5 +60,5 @@ Werkzeug==2.0.2
 wrapt==1.13.3
 WTForms==3.0.1
 
-# requirements for Heroku
-#psycopg2==2.9.1
+# requirements for Heroku & postgres
+#psycopg2-binary

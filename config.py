@@ -16,7 +16,7 @@ class Config(object):
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    ADMINS = ['your-email@example.com']
+    ADMINS = ['sas@rtsoft.ru']
     POSTS_PER_PAGE = 5
     LANGUAGES = ['ru', 'ru']
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
@@ -24,4 +24,5 @@ class Config(object):
     ELASTICSEARCH_USER = os.environ.get('ELASTICSEARCH_USER')
     ELASTICSEARCH_PASSWORD = os.environ.get('ELASTICSEARCH_PASSWORD')
     LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
+    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
 

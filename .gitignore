@@ -1,5 +1,5 @@
 /.env
-/elasticsearch_commands.txt
+/elasticsearch_docker commands.txt
 /logs/
 /deployment_on_linux/.env
 /app.db
@@ -8,3 +8,4 @@
 /heroku_commands.txt
 /docker_commands.txt
 /deployment_on_linux/droplet_commands.txt
+/linux_python_redis_commands.txt
